@@ -85,6 +85,8 @@ public class ServerFilter implements ContainerRequestFilter, ContainerResponseFi
       }
       Span serverSpan = builder.startManual();
 
+      tracer.makeActive(serverSpan);
+
       traceContext.push(serverSpan);
     } catch (Exception e) {
       log.error("Server Filter Request:", e);
